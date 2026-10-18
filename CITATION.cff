@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+title: "Prop firm rules & prices dataset"
+type: dataset
+authors:
+  - name: "PropFirmVS"
+    website: "https://propfirmvs.com"
+url: "https://propfirmvs.com/data"
+license: CC-BY-4.0
+date-released: "2026-10-18"

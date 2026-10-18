@@ -1,0 +1,341 @@
+{
+  "name": "propfirmvs-prop-firm-rules",
+  "title": "Prop firm rules & prices dataset",
+  "description": "Verified evaluation prices, profit targets, drawdown limits and rules of prop trading firms, one row per firm, product and account size.",
+  "homepage": "https://propfirmvs.com/data",
+  "licenses": [
+    {
+      "name": "CC-BY-4.0",
+      "path": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0"
+    }
+  ],
+  "sources": [
+    {
+      "title": "PropFirmVS",
+      "path": "https://propfirmvs.com/data"
+    }
+  ],
+  "resources": [
+    {
+      "name": "prop-firm-rules",
+      "path": "prop-firm-rules.csv",
+      "format": "csv",
+      "mediatype": "text/csv",
+      "encoding": "utf-8",
+      "schema": {
+        "fields": [
+          {
+            "name": "firm",
+            "type": "string",
+            "description": "Firm name"
+          },
+          {
+            "name": "market",
+            "type": "string",
+            "description": "futures, forex, crypto or stocks"
+          },
+          {
+            "name": "program",
+            "type": "string",
+            "description": "Product / program name when a firm sells several (may be empty)"
+          },
+          {
+            "name": "account_size_usd",
+            "type": "integer",
+            "description": "Nominal account size in USD"
+          },
+          {
+            "name": "eval_price_usd",
+            "type": "number",
+            "description": "Evaluation price in USD (one-time, or per month where the firm bills monthly)"
+          },
+          {
+            "name": "profit_target_usd",
+            "type": "number",
+            "description": "Profit target in USD"
+          },
+          {
+            "name": "max_drawdown_usd",
+            "type": "number",
+            "description": "Maximum drawdown in USD"
+          },
+          {
+            "name": "daily_loss_limit_usd",
+            "type": "number",
+            "description": "Daily loss limit in USD; empty = none or unverified"
+          },
+          {
+            "name": "drawdown_type",
+            "type": "string",
+            "description": "Static balance, Trailing end-of-day or Trailing intraday"
+          },
+          {
+            "name": "consistency_percent",
+            "type": "number",
+            "description": "Consistency rule threshold in percent; empty = none or unverified"
+          },
+          {
+            "name": "activation_fee_usd",
+            "type": "number",
+            "description": "Activation / funded-account fee in USD; empty = none or unverified"
+          },
+          {
+            "name": "challenge_steps",
+            "type": "integer",
+            "description": "Number of evaluation phases: 0 = instant funding, 1, 2 or 3"
+          },
+          {
+            "name": "time_limit_days",
+            "type": "integer",
+            "description": "Evaluation time limit in calendar days; 0 = no time limit; empty = unverified"
+          },
+          {
+            "name": "phase2_profit_target_usd",
+            "type": "number",
+            "description": "Phase 2 profit target in USD (2+ step programs only)"
+          },
+          {
+            "name": "max_micro_contracts",
+            "type": "integer",
+            "description": "Maximum micro contracts allowed on this account size (futures); empty = not stated"
+          },
+          {
+            "name": "funded_drawdown_type",
+            "type": "string",
+            "description": "Drawdown type of the funded phase when it differs from the evaluation"
+          },
+          {
+            "name": "funded_consistency_percent",
+            "type": "number",
+            "description": "Consistency threshold for the funded/payout phase in percent; 0 = none; empty = unknown or same as evaluation"
+          },
+          {
+            "name": "price_per_1k_account_usd",
+            "type": "number",
+            "description": "Derived: evaluation price per $1,000 of account size"
+          },
+          {
+            "name": "profit_target_to_drawdown",
+            "type": "number",
+            "description": "Derived: profit target divided by max drawdown (lower = easier; 0 = no target)"
+          },
+          {
+            "name": "rule_strictness",
+            "type": "string",
+            "description": "Derived: Lenient, Moderate, Strict or Very strict; transparent point count, see https://propfirmvs.com/methodology#derived"
+          },
+          {
+            "name": "hedging",
+            "type": "string",
+            "description": "yes, restricted or no; empty = unverified"
+          },
+          {
+            "name": "copy_trading",
+            "type": "string",
+            "description": "yes, restricted or no; empty = unverified"
+          },
+          {
+            "name": "scalping",
+            "type": "string",
+            "description": "yes, restricted or no; empty = unverified"
+          },
+          {
+            "name": "martingale",
+            "type": "string",
+            "description": "yes, restricted or no; empty = unverified"
+          },
+          {
+            "name": "stop_loss_required",
+            "type": "string",
+            "description": "yes or no; empty = unverified"
+          },
+          {
+            "name": "min_trade_duration_sec",
+            "type": "integer",
+            "description": "Minimum trade duration in seconds; 0 = none; empty = unverified"
+          },
+          {
+            "name": "inactivity_days",
+            "type": "integer",
+            "description": "Days without a trade before the account may be closed; empty = unverified"
+          },
+          {
+            "name": "max_risk_per_trade_pct",
+            "type": "number",
+            "description": "Maximum risk per trade as % of balance; empty = no such rule or unverified"
+          },
+          {
+            "name": "fee_refund",
+            "type": "string",
+            "description": "Is the evaluation fee refunded (usually with the first payout): yes, partial or no"
+          },
+          {
+            "name": "first_payout_days",
+            "type": "integer",
+            "description": "Earliest day count from funded start to first payout request (calendar vs trading days differ per firm)"
+          },
+          {
+            "name": "min_payout_usd",
+            "type": "number",
+            "description": "Minimum payout request in USD"
+          },
+          {
+            "name": "max_payout_usd",
+            "type": "number",
+            "description": "Maximum per payout request in USD; empty = no cap stated"
+          },
+          {
+            "name": "payout_methods",
+            "type": "string",
+            "description": "Payout methods, comma-separated: bank_wire, crypto, paypal, rise, wise, card, other"
+          },
+          {
+            "name": "funded_monthly_fee_usd",
+            "type": "number",
+            "description": "Recurring fee after funding in USD; 0 = none; empty = unverified"
+          },
+          {
+            "name": "data_provider",
+            "type": "string",
+            "description": "Futures data feed provider; empty = not stated"
+          },
+          {
+            "name": "leverage",
+            "type": "string",
+            "description": "Leverage by asset class (forex/CFD/crypto)"
+          },
+          {
+            "name": "commissions",
+            "type": "string",
+            "description": "Commissions / fees (forex/CFD/crypto)"
+          },
+          {
+            "name": "swap_free",
+            "type": "string",
+            "description": "Swap-free account: yes, addon or no"
+          },
+          {
+            "name": "restricted_countries",
+            "type": "string",
+            "description": "Countries whose residents cannot join, as published by the firm; empty = not found"
+          },
+          {
+            "name": "firm_page",
+            "type": "string",
+            "format": "uri",
+            "description": "URL of the firm's review page on propfirmvs.com"
+          },
+          {
+            "name": "last_verified",
+            "type": "date",
+            "description": "Date the firm rules were last checked against its own pages (YYYY-MM-DD)"
+          },
+          {
+            "name": "eval_billing",
+            "type": "string",
+            "description": "one_time or monthly (evaluation billed as a subscription)"
+          },
+          {
+            "name": "price_per_1k_drawdown_usd",
+            "type": "number",
+            "description": "Derived: evaluation list price per $1,000 of max drawdown"
+          },
+          {
+            "name": "cost_to_get_funded_usd",
+            "type": "number",
+            "description": "Derived: evaluation list price (x 2 months if billed monthly) + activation fee; empty when the activation fee is unknown"
+          },
+          {
+            "name": "reset_fee_usd",
+            "type": "number",
+            "description": "Reset fee for this product and size in USD"
+          },
+          {
+            "name": "funded_start_contracts",
+            "type": "integer",
+            "description": "Futures: contracts allowed at the start of the funded account"
+          },
+          {
+            "name": "payout_cap_usd",
+            "type": "number",
+            "description": "Cap on the first payout(s) for this size in USD"
+          },
+          {
+            "name": "currency",
+            "type": "string",
+            "description": "Pricing currency when the firm does not price in USD (EUR or GBP); empty = USD"
+          },
+          {
+            "name": "native_price",
+            "type": "number",
+            "description": "Price in the firm's own currency; eval_price_usd is then an approximate USD conversion (ECB reference rate)"
+          },
+          {
+            "name": "dll_breach",
+            "type": "string",
+            "description": "soft (trading paused for the day) or hard (account fails); empty = unverified"
+          },
+          {
+            "name": "dll_basis",
+            "type": "string",
+            "description": "What the daily loss is measured from: balance, equity, higher_of, eod_balance, other"
+          },
+          {
+            "name": "dd_lock_trigger",
+            "type": "string",
+            "description": "When the trailing drawdown stops trailing: none, balance_threshold, target_reached, first_payout"
+          },
+          {
+            "name": "dd_lock_offset_usd",
+            "type": "number",
+            "description": "Drawdown floor locks at start balance + this amount (USD, main program)"
+          },
+          {
+            "name": "news_window_eval_min",
+            "type": "integer",
+            "description": "Minutes around high-impact news with restricted trading in the evaluation; 0 = no restriction"
+          },
+          {
+            "name": "news_window_funded_min",
+            "type": "integer",
+            "description": "Same for funded accounts; 0 = no restriction"
+          },
+          {
+            "name": "consistency_base",
+            "type": "string",
+            "description": "What the consistency % is measured against: total_profit, profit_target, positive_days, other"
+          },
+          {
+            "name": "consistency_effect",
+            "type": "string",
+            "description": "What breaking it does: blocks_payout, raises_target, fails_account, other"
+          },
+          {
+            "name": "commission_rt_es_usd",
+            "type": "number",
+            "description": "Futures: round-turn commission per ES contract in USD"
+          },
+          {
+            "name": "data_feeds",
+            "type": "string",
+            "description": "Futures data/connection feeds (Rithmic, Tradovate, CQG, ...)"
+          },
+          {
+            "name": "max_payouts",
+            "type": "integer",
+            "description": "Maximum number of payouts before the account closes or moves live; 0 = unlimited"
+          },
+          {
+            "name": "funded_account_type",
+            "type": "string",
+            "description": "simulated, live or mixed (per the firm's terms)"
+          }
+        ],
+        "missingValues": [
+          ""
+        ]
+      }
+    }
+  ]
+}
